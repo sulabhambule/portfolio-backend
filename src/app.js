@@ -5,8 +5,9 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 const allowedOrigins = [
-  "https://portfolio-backend-cyan-sigma.vercel.app",
-  "http://localhost:5173",
+  "https://portfolio-backend-cyan-sigma.vercel.app", // backend
+  "http://localhost:5173", // dev frontend
+  "https://portforlio-client.vercel.app", // deployed frontend
 ];
 
 app.use(
@@ -15,7 +16,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error("Not allowed by CORS: " + origin));
       }
     },
     credentials: true,
